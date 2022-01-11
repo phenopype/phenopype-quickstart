@@ -1,0 +1,33 @@
+# phenopype quickstart template
+# ------------------------------
+# this template 
+
+template_locked: true  # prevents accidental overwrite - removed after loading
+
+processing_steps:
+    - preprocessing:
+        - create_mask:
+            tool: polygon
+            label: mask1
+        - blur:
+            kernel_size: 9
+    - segmentation:
+        - threshold:
+            method: adaptive
+            blocksize: 99
+            constant: 5
+            channel: red
+        - detect_contour:
+            retrieval: ext
+            min_area: 150
+    - measurement:
+        - compute_shape_features:
+    - visualization:
+        - select_canvas:
+            canvas: raw
+        - draw_contour
+        - draw_mask
+    - export:
+        - save_canvas
+        - save_annotation:
+            overwrite: true
