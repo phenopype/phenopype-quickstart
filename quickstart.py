@@ -8,6 +8,7 @@ Created on Mon Dec  6 18:16:08 2021
 import phenopype as pp
 import os
 
+## change after downloading
 os.chdir(r"D:\workspace\git-repos\phenopype\phenopype-quickstart")
 
 
