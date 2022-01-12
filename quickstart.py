@@ -13,7 +13,7 @@ os.chdir(r"D:\workspace\git-repos\phenopype\phenopype-quickstart")
 
 #%% 1. "low-throughput"
 
-## (i) start
+## (i) load image
 image = pp.load_image("stickle1.jpg")
 
 ## (ii) preprocessing
@@ -34,17 +34,24 @@ canvas = pp.visualization.draw_mask(canvas, annotations=mask)
 pp.show_image(canvas)
 
 ## (v) export
-pp.export.save_annotation(mask, dir_path=".", annotation_id="a")
-pp.export.save_annotation(contours, dir_path=".", annotation_id="a")
-pp.export.save_canvas(canvas, name="stickle1_res", dir_path=".")
+save_dir = os.getcwd()
+pp.export.save_annotation(mask, dir_path=save_dir)
+pp.export.save_annotation(contours, dir_path=save_dir)
+pp.export.save_canvas(canvas, name="stickle1_res", dir_path=save_dir)
+
+## (vi) export 2 (optional)
+## name annotations with the same tag prefix so that they can be loaded by the Pype-class
+pp.export.save_annotation(mask, dir_path=save_dir, file_name ="stickle1_annotations_quickstart.json")
+pp.export.save_annotation(contours, dir_path=save_dir, file_name ="stickle1_annotations_quickstart.json")
+
 
 #%% 2. "high-throughput"
 
-## create config-file
+## create config-file (will be saved as "stickle1_pype_config_quickstart.yaml")
 pp.load_template(template_path="quickstart-template.yaml", tag="quickstart", image_path="stickle1.jpg", overwrite=True)
 
-## run pype
-pp.Pype("stickle1.jpg", name="demo", config_path="stickle1_pype_config_quickstart.yaml")
+## run Pype class using the loaded config file
+pp.Pype(image_path="stickle1.jpg", tag="quickstart", config_path="stickle1_pype_config_quickstart.yaml")
 
 
 

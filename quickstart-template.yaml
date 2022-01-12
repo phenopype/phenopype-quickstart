@@ -1,6 +1,11 @@
 # phenopype quickstart template
-# ------------------------------
-# this template 
+# -----------------------------
+# This template is intended to go with the phenopype quickstart materials 
+# - for details see https://www.phenopype.org/docs/quickstart/ and refer to
+# Figure 2 in Luerig 2021 (https://doi.org/10.1111/2041-210X.13771) or 
+# phenopype tutorial 3 (https://www.phenopype.org/docs/tutorials/tutorial_3).
+# For a better job of measuring individual plate area see the phenopype 
+# gallery (https://www.phenopype.org/gallery/example_5/).
 
 template_locked: true  # prevents accidental overwrite - removed after loading
 
@@ -8,7 +13,7 @@ processing_steps:
     - preprocessing:
         - create_mask:
             tool: polygon
-            label: mask1
+            label: plate-region
         - blur:
             kernel_size: 9
     - segmentation:
@@ -26,7 +31,8 @@ processing_steps:
         - select_canvas:
             canvas: raw
         - draw_contour
-        - draw_mask
+        - draw_mask:
+            label: true
     - export:
         - save_canvas
         - save_annotation:

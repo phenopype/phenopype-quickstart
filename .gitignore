@@ -1,8 +1,11 @@
 # my-patterns
 _temp
 annotations.json
-stickle1_canvas_demo.jpg
-stickle1_annotations_demo.json
+stickle1_annotations.json
+stickle1_annotations_quickstart.json
+stickle1_canvas.jpg
+stickle1_canvas_quickstart.jpg
+stickle1_pype_config_quickstart.yaml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
