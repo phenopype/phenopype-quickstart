@@ -13,7 +13,7 @@ processing_steps:
     - preprocessing:
         - create_mask:
             tool: polygon
-            label: plate-region
+            label: plates
         - blur:
             kernel_size: 9
     - segmentation:
@@ -21,7 +21,6 @@ processing_steps:
             method: adaptive
             blocksize: 99
             constant: 5
-            channel: red
         - detect_contour:
             retrieval: ext
             min_area: 150
