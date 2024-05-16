@@ -5,6 +5,8 @@ Created on Mon Dec  6 18:16:08 2021
 @author: mluerig
 """
 
+## Also see https://www.phenopype.org/docs/tutorials/tutorial_3/
+
 import phenopype as pp
 import os
 
@@ -12,7 +14,7 @@ import os
 ## os.chdir(r"C:\Users\mluerig\Downloads\phenopype-quickstart-main")
 os.chdir(r"D:\git-repos\phenopype\phenopype-quickstart")
 
-#%% 1. "low-throughput"
+#%% 1. Python mode 
 
 ## (i) load image
 image = pp.load_image("stickle1.jpg")
@@ -46,18 +48,10 @@ pp.export.save_annotation(mask, dir_path=save_dir, file_name ="stickle1_annotati
 pp.export.save_annotation(contours, dir_path=save_dir, file_name ="stickle1_annotations_quickstart.json")
 
 
-#%% 2. "high-throughput"
+#%% 2. Interactive mode 
 
-## create config-file (will be saved as "stickle1_pype_config_quickstart.yaml") - needs to be "loaded" to be converted 
-## from a write protected "template" file to a "pype_config" file.
-pp.load_template(template_path="quickstart-template.yaml", tag="quickstart", image_path="stickle1.jpg", overwrite=True)
-
-## run Pype class using the loaded config file - note that your previously drawn masks is loaded
-pp.Pype(image_path="stickle1.jpg", tag="quickstart", config_path="stickle1_pype_config_quickstart.yaml")
-
-## to redo the annotation procedure, you need to set "edit: True" or "edit: overwrite" in the "create_mask" 
-## "ANNOTATION" sequence OR select a new tag under which the results are saved/loaded:
-pp.Pype(image_path="stickle1.jpg", tag="quickstart-v1", config_path="stickle1_pype_config_quickstart.yaml")
-
+## run Pype class using the loaded config file
+## note that your previously drawn masks are loaded - delete the annotations json file to redo them
+pp.Pype(image_path="stickle1.jpg", tag="quickstart", config_path="quickstart-template.yaml")
 
 

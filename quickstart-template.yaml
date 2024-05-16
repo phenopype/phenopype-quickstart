@@ -4,14 +4,12 @@
 # - for details see https://www.phenopype.org/docs/quickstart/ and refer to
 # Figure 2 in Luerig 2021 (https://doi.org/10.1111/2041-210X.13771) or 
 # phenopype tutorial 3 (https://www.phenopype.org/docs/tutorials/tutorial_3).
-# For a better job of measuring individual plate area see the phenopype 
-# gallery (https://www.phenopype.org/gallery/example_5/).
-
-template_locked: true  # prevents accidental overwrite - removed after loading
+# Also check https://www.phenopype.org/gallery/projects/stickleback-landmarks/
 
 processing_steps:
     - preprocessing:
         - create_mask:
+            ANNOTATION: {type: mask, id: a, edit: false}
             tool: polygon
             label: plates
         - blur:
@@ -22,10 +20,12 @@ processing_steps:
             blocksize: 99
             constant: 5
         - detect_contour:
+            ANNOTATION: {type: contour, id: a, edit: overwrite}
             retrieval: ext
             min_area: 150
     - measurement:
         - compute_shape_features:
+            ANNOTATION: {type: shape_features, id: a, edit: overwrite}
     - visualization:
         - select_canvas:
             canvas: raw
